@@ -18,6 +18,7 @@
           Verhalten, wenn Laser ein Pulse der Länge 0 gibt, wird abgefangen.(out of range)
           -WiFi-Scan-Algorithmus wurde implementiert.
           -Robustness UDP
+          -Firmware, bei welcher LIDAR im Roboter montiert ist.
 
 */
 
