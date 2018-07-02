@@ -85,7 +85,7 @@ float maxDeltaS;
 
 //WiFi-SoftAP credentials
 #define ssid "KVW-Calw Roboter"
-#define password "Seminarkurs20172018"
+#define password "xxxxxxxx"
 #define BROADCAST "192.168.4.255"
 
 //Instanziierungen der Objekte
