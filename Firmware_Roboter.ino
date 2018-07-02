@@ -4,7 +4,7 @@
    @last change 07.05.2018
    @version 1.7
    @changes:
-   -version 1.0: Grungerüst, UDP, WiFi-AP, Lidar-PWM
+   -version 1.0: Grundgerüst, UDP, WiFi-AP, Lidar-PWM
    -version 1.1: Abfangen unerwarteter Messungen des Lidar(Timeout des PWM resultiert in 0m)
    -version 1.2: Thread für LED-Laufanimation implementiert.
    -version 1.3: Kanaloptimierung und 20MhZ-Bandbreite implementiert, Verbesserungen des Protokolls(App erfragt mode etc.)
@@ -15,7 +15,7 @@
    -version 1.7: Logik für Relais angepasst, Webserver für APK-DL auf 192.168.4.1
    @Note: PWM is used to get the distance from the lidar
           Geschwindigkeit wird alle 500ms gemittelt
-          Verhalten, wenn Laser ein Pulse der Länge 0 gibt wird abgefangen.(out of range)
+          Verhalten, wenn Laser ein Pulse der Länge 0 gibt, wird abgefangen.(out of range)
           -WiFi-Scan-Algorithmus wurde implementiert.
           -Robustness UDP
 
