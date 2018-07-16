@@ -1,5 +1,8 @@
 package com.example.micha.roboter;
 
+import android.content.Context;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.util.Log;
 
 import net.margaritov.preference.colorpicker.ColorPickerDialog;
@@ -14,6 +17,8 @@ public class Steuerung implements Runnable {
 
     private MainActivity mainActivity;
     private UDPConnector udpConnector;
+    private WifiManager wifiManager;
+
     private String receiveData;
     private LEDColor ledColor = LEDColor.RED();
     private boolean spkMode = false;
@@ -26,6 +31,10 @@ public class Steuerung implements Runnable {
         this.mainActivity = mainActivity;
         this.udpConnector = new UDPConnector(6565, 1234, "192.168.4.1");
         new Thread(this).start();
+    }
+
+    public void setWifiManager(WifiManager wifiManager){
+        this.wifiManager = wifiManager;
     }
 
     public void openColorPicker(){
@@ -47,9 +56,18 @@ public class Steuerung implements Runnable {
     @Override
     public void run() {
 
-        long drops = 0;
+        long lastMs = 0;
+
 
         while (!Thread.interrupted()) {
+
+            if(System.currentTimeMillis() - lastMs > 1000){
+                if(wifiManager == null) continue;
+                WifiInfo info = wifiManager.getConnectionInfo();
+                String anz = "SSID: " + info.getSSID() + "(" + info.getRssi() + "dBm)\nPhys-Speed: " + info.getLinkSpeed() + "mbps";
+                mainActivity.anzText(anz);
+                lastMs = System.currentTimeMillis();
+            }
 
             if(gatherData) {
                 udpConnector.sendData("REQUESTMODE?");

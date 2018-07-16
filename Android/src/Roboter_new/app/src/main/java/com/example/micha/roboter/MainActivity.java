@@ -2,8 +2,10 @@ package com.example.micha.roboter;
 
 
 import android.content.ClipData;
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
@@ -21,6 +23,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import net.margaritov.preference.colorpicker.ColorPickerDialog;
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity
     private Switch perspektive;
     private Menu menü;
     private NavigationView navigationView;
+    private TextView anzTextView;
 
     private Steuerung dieSteuerung;
 
@@ -68,6 +72,7 @@ public class MainActivity extends AppCompatActivity
         unten = (ImageView) findViewById(R.id.unten);
         zufImage = (ImageView) findViewById(R.id.zufÌmage);
         perspektive = (Switch) findViewById(R.id.switch1);
+        this.anzTextView = (TextView) findViewById(R.id.textView);
 
         zufButton = (ToggleButton) findViewById(R.id.zufButton);
         zufButton.setOnClickListener(this);
@@ -86,6 +91,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         this.dieSteuerung = new Steuerung(this);
+        this.dieSteuerung.setWifiManager((WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE));
     }
 
 
@@ -359,5 +365,14 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void anzText(final String anz) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                anzTextView.setText("" + anz);
+            }
+        });
     }
 }
