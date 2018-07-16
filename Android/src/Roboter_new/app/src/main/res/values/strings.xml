@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">KVW-Calw</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="redDot">🔴</string>
+    <string name="blueDot">🔵</string>
+    <string name="greenDot">🔴</string>
+    <string name="_50_m">50 m</string>
+    <string name="_30_">30 km/h</string>
+    <string name="aus">Aus</string>
+    <string name="an">An</string>
+    <string name="zuf_lliger_modus">Zufälliger Modus</string>
+    <string name="rechterarm">RechterArm</string>
+    <string name="todo">TODO</string>
+    <string name="linkerarm">LinkerArm</string>
+
+</resources>

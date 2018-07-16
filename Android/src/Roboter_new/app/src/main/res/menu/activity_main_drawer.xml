@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+
+        <item
+            android:id="@+id/nav_red"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Rot" />
+
+        <item
+            android:id="@+id/nav_blue"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Blau" />
+
+        <item
+            android:id="@+id/nav_green"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Grün" />
+        <item
+            android:id="@+id/nav_custom"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Auswahl" />
+        <item
+            android:id="@+id/nav_sparkasse"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Sparkasse" />
+    </group>
+
+</menu>
