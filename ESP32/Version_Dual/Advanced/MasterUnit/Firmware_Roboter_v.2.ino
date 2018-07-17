@@ -14,6 +14,7 @@
    -version 1.6: UDP Controller-App Paketverlust minimiert.
    -version 1.7: Logik für Relais angepasst, Webserver für APK-DL auf 192.168.4.1
    -version 1.7: Trigger im auto-Mode wird durch 2 ESP als STA realisiert.
+   -version 1.8: Demo-Mode, Sparkassen-Mode, sowie Speichern der Farbe im EEPROM realisiert.
 */
 
 //Include Header-Dateien sowie Libaries
@@ -807,13 +808,83 @@ void ledAnimationThread(void *pvParameters) {
         delay(20);
       }
     } else {
-      //TODO: Sparkassenanimation einfügen.
-      int rndPixel[] = {random(0, 255), random(0, 255), random(0, 255)};
-      for (int i = 0; i < NUM_PIXELS / 2; i++) {
-        strip.setPixel(i, rndPixel[0], rndPixel[1], rndPixel[2]);
-        strip.setPixel(i + NUM_PIXELS / 2, rndPixel[0], rndPixel[1], rndPixel[2]);
+      /*
+         Spezial: Sparkasse-Animation
+      */
+      //Links
+      if (state == 1) {
+        //aufblitzen(0, NUM_PIXELS / 2);
+        for (int i = 0; i < 22 ; i++) { // rot bis LED 22
+          strip.setPixel(i, 255, 255, 255);
+          strip.show();
+          delay(delayTimeLED);
+        }
+        for (int i = 22; i < NUM_PIXELS / 2 ; i++) { // weiß bis LED ENDE
+          strip.setPixel(i, 255, 0, 0);
+          strip.show();
+          delay(delayTimeLED);
+        }
+        //aufblitzen(NUM_PIXELS / 2, NUM_PIXELS);
+        for (int i = 0; i < NUM_PIXELS; i++) {
+          strip.setPixel(i, 0, 0, 0);
+        }
         strip.show();
-        delay(delayTimeLED);
+
+        //Rechts
+      } else if (state == 2) {
+        //aufblitzen(NUM_PIXELS / 2, NUM_PIXELS);
+        for (int i = NUM_PIXELS / 2; i < NUM_PIXELS / 2 + 22 ; i++) { // rot bis LED 22
+          strip.setPixel(i, 255, 255, 255);
+          strip.show();
+          delay(delayTimeLED);
+        }
+        for (int i = NUM_PIXELS / 2 + 22; i < NUM_PIXELS ; i++) { // weiß bis LED ENDE
+          strip.setPixel(i, 255, 0, 0);
+          strip.show();
+          delay(delayTimeLED);
+        }
+        //aufblitzen(NUM_PIXELS / 2, NUM_PIXELS);
+        for (int i = 0; i < NUM_PIXELS; i++) {
+          strip.setPixel(i, 0, 0, 0);
+        }
+        strip.show();
+
+        //Beide
+      } else if (state == 4) {
+        //        for (int i = NUM_PIXELS / 2; i < NUM_PIXELS / 2 + 22 ; i++) { // rot bis LED 22
+        //          strip.setPixel(i, 255, 255, 255);
+        //          strip.setPixel(NUM_PIXELS / 2 + i - 1, 255, 255, 255);
+        //          strip.show();
+        //          delay(delayTimeLED);
+        //        }
+        //        for (int i = NUM_PIXELS / 2 + 22; i < NUM_PIXELS ; i++) { // weiß bis LED ENDE
+        //          strip.setPixel(i, 255, 0, 0);
+        //          strip.setPixel(-i, 255, 0, 0);
+        //          strip.show();
+        //          delay(delayTimeLED);
+        //        }
+
+
+        for (int i = 0; i < 22 ; i++) { // weiß bis LED 22
+          strip.setPixel(i, 255, 255, 255);
+          strip.setPixel(NUM_PIXELS / 2 + i, 255, 255, 255);
+          strip.show();
+          delay(delayTimeLED);
+        }
+        for (int i = 23; i < 41 ; i++) { // rot bis LED 41
+          strip.setPixel(i, 255, 0, 0);
+          strip.setPixel(i + NUM_PIXELS / 2, 255, 0, 0);
+          strip.show();
+          delay(delayTimeLED);
+        }
+
+
+        for (int i = 0; i < NUM_PIXELS; i++) {
+          strip.setPixel(i, 0, 0, 0);
+        }
+        strip.show();
+      } else {
+        delay(20);
       }
     }
   }
@@ -887,4 +958,3 @@ void loop() {
   //xSemaphoreGive( baton );
   delay(20);
 }
-
